@@ -1,0 +1,24 @@
+{
+   "version": 2,
+   "builds": [
+     {
+       "src": "package.json",
+       "use": "@vercel/node"
+     },
+     {
+       "src": "nuxt.config.js",
+       "use": "@nuxtjs/vercel-builder",
+       "config": {
+         "serverFiles": [
+           "plugins/**",
+           "static/**",
+           ".nuxt/dist/sitemap-routes.json"
+         ]
+       }
+     }
+   ],
+   "buildCommand": "yarn build",
+   "outputDirectory": "dist",
+   "framework": "nuxtjs"
+ }
+ 
