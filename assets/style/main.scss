@@ -165,12 +165,12 @@ figure img{
     background-color: var(--color-light-purple) !important;
   }
   main{
-    height: 90vh;
+    height: 100vh;
     h1,h2,h3,h4,h5,h6{
       padding: 0.7rem 0px;
     }
     h4:first-child{
-      margin-top: 12rem;
+      margin-top: 8rem;
     }
   }
   .search{
@@ -211,13 +211,12 @@ figure img{
     justify-content: flex-end;
   }
   .top-category{
-    height: 80vh;
+    height: 100vh;
     background-color: white;
     .category{
       position: absolute;
       height: 150px;
       top: -75px;
-      width: 100%;
       display: flex;
       justify-content: space-between;
       .box-category{
@@ -229,6 +228,7 @@ figure img{
       }
     }
     .category-title{
+      float: left;
       margin-top: 10rem;
     }
   }

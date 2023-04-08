@@ -34,24 +34,116 @@
     </main>
 
     <!-- start course category -->
-    <section class="top-category">
+    <section class="top-category w-100">
       <b-container class="position-relative">
-        <div class="category">
+        <b-container class="category">
           <div class="box-category"></div>
           <div class="box-category"></div>
           <div class="box-category"></div>
           <div class="box-category"></div>
-        </div>
+        </b-container>
+        
 
-        <b-row class="category-title">
+        <b-row class="category-title w-100 d-flex">
           <b-col cols="6">
-            <h5><b class="color-red">Favourite Course</b></h5>
-            <h2><b class="color-dark-blue">Top Category</b></h2>
+            <h5>
+              <b class="color-red">Favourite Course</b>
+            </h5>
+            <h2 class="pt-2">
+              <b class="color-dark-blue">Top Category</b>
+            </h2>
           </b-col>
-          <b-col cols="6"></b-col>
+          <b-col cols="6" class="d-flex align-items-center justify-content-end">
+            <b-button pill class="register">
+              All Categories
+            </b-button>
+          </b-col>
         </b-row>
+
+        <b-row class="float-left">
+          <b-col cols="8">
+            <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet.</h6>
+          </b-col>
+        </b-row>
+
+        <b-row class="float-left w-100 mt-5">
+          <b-col cols="3">
+            <b-card>
+            <b-card-body class="d-flex align-items-center justify-content-center p-2" style="flex-direction: column;">
+              <img src="https://dreamslms-wp.dreamguystech.com/wp-content/uploads/2023/01/categories-icon.png" alt="">
+              <h5 class="pt-2"><b class="color-dark-blue">Angular</b></h5>
+              <p>4 Courses</p>
+            </b-card-body>
+          </b-card>
+          </b-col>
+          <b-col cols="3">
+            <b-card>
+            <b-card-body class="d-flex align-items-center justify-content-center p-2" style="flex-direction: column;">
+              <img src="https://dreamslms-wp.dreamguystech.com/wp-content/uploads/2023/01/categories-icon-04.png" alt="">
+              <h5 class="pt-2"><b class="color-dark-blue">Python</b></h5>
+              <p>4 Courses</p>
+            </b-card-body>
+          </b-card>
+          </b-col>
+          <b-col cols="3">
+            <b-card>
+            <b-card-body class="d-flex align-items-center justify-content-center p-2" style="flex-direction: column;">
+              <img src="https://dreamslms-wp.dreamguystech.com/wp-content/uploads/2023/01/categories-icon-02.png" alt="">
+              <h5 class="pt-2"><b class="color-dark-blue">Node js</b></h5>
+              <p>4 Courses</p>
+            </b-card-body>
+          </b-card>
+          </b-col>
+          <b-col cols="3">
+            <b-card>
+            <b-card-body class="d-flex align-items-center justify-content-center p-2" style="flex-direction: column;">
+              <img src="https://dreamslms-wp.dreamguystech.com/wp-content/uploads/2023/01/categories-icon-01.png" alt="">
+              <h5 class="pt-2"><b class="color-dark-blue">Docker Development</b></h5>
+              <p>4 Courses</p>
+            </b-card-body>
+          </b-card>
+          </b-col>
+        </b-row>
+
       </b-container>
     </section>
+
+    <section class="container mt-5">
+        <b-row class="category-title w-100 d-flex">
+          <b-col cols="6">
+            <h5>
+              <b class="color-red">What’s New</b>
+            </h5>
+            <h2 class="pt-2">
+              <b class="color-dark-blue">Featured Courses</b>
+            </h2>
+          </b-col>
+          <b-col cols="6" class="d-flex align-items-center justify-content-end">
+            <b-button pill class="register">
+              All Courses
+            </b-button>
+          </b-col>
+        </b-row>
+        <b-row class="float-left">
+          <b-col cols="8">
+            <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget aenean accumsan bibendum gravida maecenas augue elementum et neque. Suspendisse imperdiet.</h6>
+          </b-col>
+        </b-row>
+        <b-row class="float-left w-100">
+          <b-col cols="4">
+            <b-card>
+              <b-card-body>
+                <figure>
+                  <img src="https://dreamslms-wp.dreamguystech.com/wp-content/uploads/2023/01/course-13-5.jpg" alt="">
+                </figure>
+              </b-card-body>
+            </b-card>
+          </b-col>
+          <b-col cols="4">2</b-col>
+          <b-col cols="4">3</b-col>
+        </b-row>
+    </section>
+
   </div>
 </template>
 
