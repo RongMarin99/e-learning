@@ -40,7 +40,68 @@
       <Nuxt />
 
       <!-- Start Footer -->
-    
+        <footer class="container-fluid float-left footer">
+          <section class="container">
+            <b-row class="pt-5">
+              <b-col cols="4">
+                <img height="50" src="https://dreamslms-wp.dreamguystech.com/wp-content/uploads/2023/01/logo.svg" alt="">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris
+
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris
+                </p>
+              </b-col>
+              <b-col cols="4">
+                <h4 class="color-dark-blue">For Student</h4>
+                <ul class="pl-0">
+                  <li>
+                    <nuxt-link to="/profile">Profile</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="">Login</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="">Register</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="">Student</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="">Dashboard</nuxt-link>
+                  </li>
+                </ul>
+              </b-col>
+              <b-col cols="4">
+                <h4 class="color-dark-blue">Address</h4>
+                <div class="d-flex p-2">
+                  <b-form-input class="mr-2"></b-form-input>
+                  <b-button class="bg-red">Submit</b-button>
+                </div>
+                <div class="d-flex align-items-center mb-1">
+                  <i class="material-icons">location_on</i>
+                  <p class="mb-0 pl-2">3556 Beech Street, San Francisco, California, CA 94108</p>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="material-icons">mail</i>
+                  <p class="mb-0 pl-2">rongmarin98@gmail.com</p>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="material-icons">phone_in_talk</i>
+                  <p class="mb-0 pl-2">rongmarin98@gmail.com</p>
+                </div>
+              </b-col>
+            </b-row>
+            <hr>
+            <b-row>
+              <b-col cols="6">
+                <p>Category | Policy</p>
+              </b-col>
+              <b-col cols="6">
+                <p align="right"> &copy; 2023 Dreams LMS. All right reverved.</p>
+              </b-col>
+            </b-row>
+          </section>
+        </footer>
       <!-- End Footer -->
   
     </div>
@@ -147,6 +208,6 @@ body {
 }
 li a.nuxt-link-exact-active {
     color: #FD7237 !important;
-  }
+}
   
 </style>
