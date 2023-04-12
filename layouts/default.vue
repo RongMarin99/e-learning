@@ -1,7 +1,7 @@
 <template>
     <div>
       <!-- Start Header -->
-        <header id="navigation-bar" class="p-1">
+        <header id="navigation-bar" class="p-1 header">
           <b-container>
             <header>
               <b-navbar toggleable="lg">
@@ -37,13 +37,13 @@
         </header>
       <!-- End Header -->
 
-      <Nuxt />
+        <Nuxt />
 
       <!-- Start Footer -->
         <footer class="container-fluid float-left footer">
           <section class="container">
             <b-row class="pt-5">
-              <b-col cols="4">
+              <b-col xl="4" lg="4" md="4" sm="12" xs="12" cols="12">
                 <img height="50" src="https://dreamslms-wp.dreamguystech.com/wp-content/uploads/2023/01/logo.svg" alt="">
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris
@@ -51,7 +51,7 @@
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consequat mauris
                 </p>
               </b-col>
-              <b-col cols="4">
+              <b-col xl="4" lg="4" md="4" sm="12" xs="12" cols="12">
                 <h4 class="color-dark-blue">For Student</h4>
                 <ul class="pl-0">
                   <li>
@@ -71,10 +71,10 @@
                   </li>
                 </ul>
               </b-col>
-              <b-col cols="4">
+              <b-col xl="4" lg="4" md="4" sm="12" xs="12" cols="12">
                 <h4 class="color-dark-blue">Address</h4>
                 <div class="d-flex p-2">
-                  <b-form-input class="mr-2"></b-form-input>
+                  <b-form-input placeholder="Enter your email address" class="mr-2"></b-form-input>
                   <b-button class="bg-red">Submit</b-button>
                 </div>
                 <div class="d-flex align-items-center mb-1">
@@ -93,10 +93,10 @@
             </b-row>
             <hr>
             <b-row>
-              <b-col cols="6">
+              <b-col xl="6" lg="6" md="6" sm="12" xs="12" cols="12">
                 <p>Category | Policy</p>
               </b-col>
-              <b-col cols="6">
+              <b-col xl="6" lg="6" md="6" sm="12" xs="12" cols="12" class="copy">
                 <p align="right"> &copy; 2023 Dreams LMS. All right reverved.</p>
               </b-col>
             </b-row>

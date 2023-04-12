@@ -77,7 +77,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src: '~/plugins/flag.js',mode:'client'},
-    {src: '~/plugins/share.js',mode:'client'}
+    {src: '~/plugins/share.js',mode:'client'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -115,6 +115,34 @@ export default {
 			'nuxt-i18n',
       '@nuxtjs/sitemap',
       '@nuxt/image',
+      [
+        '@nuxtjs/firebase',
+        {
+          config: {
+            apiKey: 'AIzaSyBl5ECmO9jiRf_x-xmL0Udwl2JCXFLF9wI',
+            authDomain: 'vue-auth-5c26d.firebaseapp.com',
+            projectId: 'vue-auth-5c26d',
+            storageBucket: 'vue-auth-5c26d.appspot.com',
+            messagingSenderId: '8589204061',
+            appId: '1:8589204061:web:fa6bc5244cc48b68d50bb4'
+          },
+          // services: {
+          //   messaging: {
+          //     createServiceWorker: true,
+          //     actions: [
+          //       {
+          //         action:
+          //           process.env.ADMIN_URL + 'notifications'
+          //       }
+          //     ],
+          //     fcmPublicVapidKey: process.env.FCM_PUBLIC_VAPID_KEY // OPTIONAL : Sets vapid key for FCM after initialization
+          //   },
+          //   functions: {
+          //     emulatorPort: 12345
+          //   }
+          // }
+        }
+      ]
   ],
   sitemap: {
     hostname: 'https://kroit.net',
