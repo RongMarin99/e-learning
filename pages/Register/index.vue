@@ -2,9 +2,9 @@
     <b-container>
         <b-row>
           <b-col cols="6" class="form-login">
-            <div class="form">
+            <div class="form form-register">
               <b-form class="w-100">
-                <h2 class="mt-4"><b class="color-red">Sign in to Account</b></h2>
+                <h2 class="mt-4"><b class="color-red">Sign up Account</b></h2>
                 <div class="line bg-red"></div>
                 <div class="d-flex pt-4 pb-3 icon-avatar">
                   <img @click="facebookLogin" height="40" src="@/assets/image/fb.png" alt="">
@@ -14,24 +14,32 @@
                 <div>
                   <p>or use your email account</p> 
                 </div>
+                <div class="d-flex">
+                  <div class="email-input">
+                    <i class="material-icons">person</i>
+                    <b-input v-model="form.fname" placeholder="First Name"></b-input>
+                  </div>
+                  &nbsp; &nbsp;
+                  <div class="email-input">
+                    <i class="material-icons">person</i>
+                    <b-input v-model="form.lname" placeholder="Last Name"></b-input>
+                  </div>
+                </div>
                 <div class="email-input">
                   <i class="material-icons">mail</i>
-                  <b-input placeholder="Email"></b-input>
+                  <b-input v-model="form.email" placeholder="Email"></b-input>
                 </div>
                 <div class="email-input">
                   <i class="material-icons">lock</i>
-                  <b-input placeholder="Password"></b-input>
+                  <b-input v-model="form.password" placeholder="Password"></b-input>
                 </div>
                 <div class="w-100 d-flex align-items-center justify-content-between">
                   <div class="h-100 d-flex align-items-center ">
                     <input type="checkbox">
                     <p class="mb-0 pl-1">Remember me</p>
                   </div>
-                  <div>
-                      Forgot Password?
-                  </div>
                 </div>
-                <b-button variant="none" class="bg-red text-white px-5 py-3 mt-4" pill >Sign In</b-button>
+                <b-button @click="register" variant="none" class="bg-red text-white px-5 py-3 mt-4" pill >Sign Up</b-button>
               </b-form>
             </div>
           </b-col>
@@ -41,7 +49,7 @@
             <p align="center" class="mt-3 text-secondary">
               Fill up personal information and <br> start journey with us.
             </p>
-            <b-button to="register" pill class="register mt-4">Sign Up</b-button>
+            <b-button to="/login" pill class="register mt-4">Sign In</b-button>
           </b-col>
         </b-row>
     </b-container>
@@ -53,17 +61,29 @@ export default{
     layout: 'noLayout',
     data(){
         return {
-          email: '',
-          password: ''
+          form: {
+            fname: '',
+            lname: '',
+            username: '',
+            email: '',
+            password: '',
+            social: false
+          }
         }
     },
     methods: {
+      register(){
+        this.form.username = this.form.fname+" "+this.form.lname
+        this.$axios.$post('register',this.form).then(res => {
+          console.log(100,res);
+        })
+      },
       signInPopup() { 
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           console.log(result);
           // store the user ore wathever
-          // this.$router.push('/')
+         // this.$router.push('/')
         }).catch(e => {
           this.$snotify.error(e.message)
           console.log(e)

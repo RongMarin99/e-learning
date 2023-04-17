@@ -68,7 +68,9 @@ export default {
       
     ],
   },
-
+  router: {
+    middleware: ['auth']
+  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/style/main.scss'
@@ -78,6 +80,7 @@ export default {
   plugins: [
     {src: '~/plugins/flag.js',mode:'client'},
     {src: '~/plugins/share.js',mode:'client'},
+    {src: '~/plugins/firebase.js',mode:'client'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -85,7 +88,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/color-mode',
+    // '@nuxtjs/color-mode',
     '@nuxtjs/google-analytics'
   ],
   googleAnalytics: {
@@ -115,34 +118,6 @@ export default {
 			'nuxt-i18n',
       '@nuxtjs/sitemap',
       '@nuxt/image',
-      [
-        '@nuxtjs/firebase',
-        {
-          config: {
-            apiKey: 'AIzaSyBl5ECmO9jiRf_x-xmL0Udwl2JCXFLF9wI',
-            authDomain: 'vue-auth-5c26d.firebaseapp.com',
-            projectId: 'vue-auth-5c26d',
-            storageBucket: 'vue-auth-5c26d.appspot.com',
-            messagingSenderId: '8589204061',
-            appId: '1:8589204061:web:fa6bc5244cc48b68d50bb4'
-          },
-          // services: {
-          //   messaging: {
-          //     createServiceWorker: true,
-          //     actions: [
-          //       {
-          //         action:
-          //           process.env.ADMIN_URL + 'notifications'
-          //       }
-          //     ],
-          //     fcmPublicVapidKey: process.env.FCM_PUBLIC_VAPID_KEY // OPTIONAL : Sets vapid key for FCM after initialization
-          //   },
-          //   functions: {
-          //     emulatorPort: 12345
-          //   }
-          // }
-        }
-      ]
   ],
   sitemap: {
     hostname: 'https://kroit.net',
@@ -183,8 +158,8 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'https://api.kroit.xyz/api/',
-   // baseURL: 'http://localhost:8000/api/',
+   // baseURL: 'https://api.kroit.xyz/api/',
+    baseURL: 'http://localhost:8000/api/',
   },
   manifest: {
     name: 'Etec Center',

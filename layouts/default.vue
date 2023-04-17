@@ -5,7 +5,7 @@
           <b-container>
             <header>
               <b-navbar toggleable="lg">
-                <b-navbar-brand href="#">
+                <b-navbar-brand to="/">
                   <img height="35" src="https://dreamslms-wp.dreamguystech.com/wp-content/themes/dreamslms/assets/images/logo.svg" alt="">
                 </b-navbar-brand>
             
@@ -26,8 +26,8 @@
                   <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">
                     <b-nav-form>
-                      <b-button pill variant="light" class="mr-2 login">Login</b-button>
-                      <b-button pill class="register">Register</b-button>
+                      <b-button to="/login" pill variant="light" class="mr-2 login">Login</b-button>
+                      <b-button to="/register" pill class="register">Register</b-button>
                     </b-nav-form>
                   </b-navbar-nav>
                 </b-collapse>
