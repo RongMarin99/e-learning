@@ -81,7 +81,8 @@ export default{
       signInPopup() { 
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
-          console.log(result);
+          this.form.username = result.user.displayName
+          return
           // store the user ore wathever
          // this.$router.push('/')
         }).catch(e => {
