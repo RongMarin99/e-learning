@@ -1,5 +1,17 @@
 <template>
     <b-container>
+      <div v-if="account_already" class="already_register">
+        <b-alert
+          :show="count"
+          dismissible
+          fade
+          variant="warning"
+          @dismissed="count=0"
+        >
+          This Email Already Registered
+        </b-alert>
+      </div>
+
         <b-row>
           <b-col cols="6" class="form-login">
             <div class="form form-register">
@@ -62,17 +74,21 @@ export default{
     data(){
         return {
           form: {
+            uid: '',
             fname: '',
             lname: '',
             username: '',
             email: '',
             password: '',
             social: false
-          }
+          },
+          account_already: false,
+          count: 5,
         }
     },
     methods: {
       register(){
+        this.form.social = false
         this.form.username = this.form.fname+" "+this.form.lname
         this.$axios.$post('register',this.form).then(res => {
           console.log(100,res);
@@ -82,11 +98,25 @@ export default{
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           this.form.username = result.user.displayName
-          return
+          this.form.social = true
+          this.form.uid = result.user.uid
+          this.form.photo = result.user.photoURL
+          this.form.email = result.user.email
+          var name = result.user.displayName.split('')
+          this.form.fname = name[0]
+          this.form.lname = name[1]
+        
+          this.$axios.$post('register',this.form).then(res => {
+            if(res.error.email == 'The email has already been taken.'){
+              this.account_already = true
+            }else{
+              this.$router.push('/')
+            }
+          })
           // store the user ore wathever
-         // this.$router.push('/')
         }).catch(e => {
           this.$snotify.error(e.message)
+          console.log("hello");
           console.log(e)
         })
       },
@@ -104,7 +134,21 @@ export default{
         this.provider = new firebase.auth.GithubAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           // store the user ore wathever
+          this.form.username = result.additionalUserInfo.username
+          this.form.social = true
+          this.form.uid = result.user.uid
+          this.form.photo = result.additionalUserInfo.profile.avatar_url
+          this.form.email = result.additionalUserInfo.profile.email
+          this.form.fname = ''
+          this.form.lname = ''
           console.log(result);
+          this.$axios.$post('register',this.form).then(res => {
+            if(res.message == false){
+              this.account_already = true
+            }else{
+
+            }
+          })
           //this.$router.push('/')
         }).catch(e => {
           this.$snotify.error(e.message)
