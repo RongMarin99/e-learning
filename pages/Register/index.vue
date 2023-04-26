@@ -1,10 +1,9 @@
 <template>
     <b-container>
-      <div v-if="account_already" class="already_register">
+      <div class="already_register">
         <b-alert
           :show="count"
           dismissible
-          fade
           variant="warning"
           @dismissed="count=0"
         >
@@ -82,8 +81,7 @@ export default{
             password: '',
             social: false
           },
-          account_already: false,
-          count: 5,
+          count: 0,
         }
     },
     methods: {
@@ -107,8 +105,8 @@ export default{
           this.form.lname = name[1]
         
           this.$axios.$post('register',this.form).then(res => {
-            if(res.error.email == 'The email has already been taken.'){
-              this.account_already = true
+            if(res.message == false){
+              this.count = 5
             }else{
               this.$router.push('/')
             }
