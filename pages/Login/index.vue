@@ -16,11 +16,20 @@
                 </div>
                 <div class="email-input">
                   <i class="material-icons">mail</i>
-                  <b-input placeholder="Email"></b-input>
+                  <b-input 
+                    placeholder="Email"
+                    type="email"
+                    v-model="form.email"
+                  >
+                  </b-input>
                 </div>
                 <div class="email-input">
                   <i class="material-icons">lock</i>
-                  <b-input placeholder="Password"></b-input>
+                  <b-input 
+                    placeholder="Password"
+                    type="password"
+                    v-model="form.password"
+                  ></b-input>
                 </div>
                 <div class="w-100 d-flex align-items-center justify-content-between">
                   <div class="h-100 d-flex align-items-center ">
@@ -31,7 +40,7 @@
                       Forgot Password?
                   </div>
                 </div>
-                <b-button variant="none" class="bg-red text-white px-5 py-3 mt-4" pill >Sign In</b-button>
+                <b-button @click="login()" variant="none" class="bg-red text-white px-5 py-3 mt-4" pill >Sign In</b-button>
               </b-form>
             </div>
           </b-col>
@@ -53,16 +62,32 @@ export default{
     layout: 'noLayout',
     data(){
         return {
-          email: '',
-          password: ''
+          form: {
+            uid: '',
+            email: '',
+            password: '',
+            social: false,
+            token: ''
+          }
         }
     },
     methods: {
+      login(){
+        this.form.social = false
+        this.$axios.$post('login',this.form).then(res => {
+
+        })
+      },
       signInPopup() { 
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
-          console.log(result);
-          // store the user ore wathever
+          this.form.social = true
+          this.form.uid = result.user.uid
+          this.form.token = result.user.refreshToken
+          this.form.email = result.user.email
+          this.$axios.$post('login',this.form).then(res => {
+            console.log(res);
+          })
           // this.$router.push('/')
         }).catch(e => {
           this.$snotify.error(e.message)

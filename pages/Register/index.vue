@@ -7,7 +7,7 @@
           variant="warning"
           @dismissed="count=0"
         >
-          This Email Already Registered
+          This User Already Registered
         </b-alert>
       </div>
 
@@ -42,7 +42,11 @@
                 </div>
                 <div class="email-input">
                   <i class="material-icons">lock</i>
-                  <b-input v-model="form.password" placeholder="Password"></b-input>
+                  <b-input 
+                      v-model="form.password" 
+                      placeholder="Password"
+                      type="password"
+                  ></b-input>
                 </div>
                 <div class="w-100 d-flex align-items-center justify-content-between">
                   <div class="h-100 d-flex align-items-center ">
@@ -89,12 +93,17 @@ export default{
         this.form.social = false
         this.form.username = this.form.fname+" "+this.form.lname
         this.$axios.$post('register',this.form).then(res => {
-          console.log(100,res);
+          if(res.error!=undefined){
+            this.count = 5
+          }else{
+            this.$router.push('/')
+          }
         })
       },
       signInPopup() { 
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
+          // store the user ore wathever
           this.form.username = result.user.displayName
           this.form.social = true
           this.form.uid = result.user.uid
@@ -111,21 +120,31 @@ export default{
               this.$router.push('/')
             }
           })
-          // store the user ore wathever
         }).catch(e => {
           this.$snotify.error(e.message)
-          console.log("hello");
-          console.log(e)
         })
       },
       facebookLogin(){
         this.provider = new firebase.auth.FacebookAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           // store the user ore wathever
-          this.$router.push('/')
+          this.form.username = result.additionalUserInfo.profile.name
+          this.form.social = true
+          this.form.uid = result.user.uid
+          this.form.photo = result.additionalUserInfo.profile.picture.data.url
+          this.form.email = result.user.email
+          this.form.fname = result.additionalUserInfo.profile.first_name
+          this.form.lname = result.additionalUserInfo.profile.last_name
+
+          this.$axios.$post('register',this.form).then(res => {
+            if(res.message == false){
+              this.count = 5
+            }else{
+              this.$router.push('/')
+            }
+          })
         }).catch(e => {
           this.$snotify.error(e.message)
-          console.log(e)
         })
       },
       GitHubLogin(){
@@ -142,15 +161,13 @@ export default{
           console.log(result);
           this.$axios.$post('register',this.form).then(res => {
             if(res.message == false){
-              this.account_already = true
+              this.count = 5
             }else{
-
+              this.$router.push('/')
             }
           })
-          //this.$router.push('/')
         }).catch(e => {
           this.$snotify.error(e.message)
-          console.log(e)
         })
       }
     }
