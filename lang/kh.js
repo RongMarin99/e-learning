@@ -20,5 +20,8 @@ export default{
     article_popular: 'អត្ថបទពេញនិយម',
     view_more: '  មើលបន្ថែម',
     loading: 'សូមរងចាំបន្តិច...',
-    viewer: 'នាក់មើល'
+    viewer: 'នាក់មើល',
+    forgot_password:'ភ្លេចលេខសម្ងាត់',
+    enter_your_email_and_we_ll_send_a_link_to_reset_your_password:'បញ្ចូលអ៊ីមែលរបស់អ្នក ហើយយើងនឹងផ្ញើតំណដើម្បីកំណត់ពាក្យសម្ងាត់ឡើងវិញ',
+    back_to_login:'ត្រលប់ទៅកាន់ចូលគណនី'
 }
