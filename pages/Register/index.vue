@@ -96,7 +96,7 @@ export default{
           if(res.error!=undefined){
             this.count = 5
           }else{
-            this.$router.push('/')
+           // this.$router.push('/')
           }
         })
       },
