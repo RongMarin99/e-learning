@@ -410,6 +410,14 @@ main {
     }
   }
 }
+.already_register{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  div{
+    width: 350px;
+  }
+}
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {

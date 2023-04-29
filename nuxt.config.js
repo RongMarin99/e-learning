@@ -7,6 +7,10 @@ export default {
   generate: {
     fallback: true
   },
+  server: {
+		port: 1200, // default: 3000
+		host: '127.0.0.1' // default: localhost
+	},
   hooks: {
     'render:route': function (url, result, context) {
       result.html = result.html.replace(/ defer>/g, ' defer async>')

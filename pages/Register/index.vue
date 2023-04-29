@@ -1,5 +1,16 @@
 <template>
     <b-container>
+      <div class="already_register">
+        <b-alert
+          :show="count"
+          dismissible
+          variant="warning"
+          @dismissed="count=0"
+        >
+          This User Already Registered
+        </b-alert>
+      </div>
+
         <b-row>
           <b-col cols="6" class="form-login">
             <div class="form form-register">
@@ -31,7 +42,11 @@
                 </div>
                 <div class="email-input">
                   <i class="material-icons">lock</i>
-                  <b-input v-model="form.password" placeholder="Password"></b-input>
+                  <b-input 
+                      v-model="form.password" 
+                      placeholder="Password"
+                      type="password"
+                  ></b-input>
                 </div>
                 <div class="w-100 d-flex align-items-center justify-content-between">
                   <div class="h-100 d-flex align-items-center ">
@@ -62,53 +77,97 @@ export default{
     data(){
         return {
           form: {
+            uid: '',
             fname: '',
             lname: '',
             username: '',
             email: '',
             password: '',
             social: false
-          }
+          },
+          count: 0,
         }
     },
     methods: {
       register(){
+        this.form.social = false
         this.form.username = this.form.fname+" "+this.form.lname
         this.$axios.$post('register',this.form).then(res => {
-          console.log(100,res);
+          if(res.error!=undefined){
+            this.count = 5
+          }else{
+            this.$router.push('/')
+          }
         })
       },
       signInPopup() { 
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
-          this.form.username = result.user.displayName
-          return
           // store the user ore wathever
-         // this.$router.push('/')
+          this.form.username = result.user.displayName
+          this.form.social = true
+          this.form.uid = result.user.uid
+          this.form.photo = result.user.photoURL
+          this.form.email = result.user.email
+          var name = result.user.displayName.split('')
+          this.form.fname = name[0]
+          this.form.lname = name[1]
+        
+          this.$axios.$post('register',this.form).then(res => {
+            if(res.message == false){
+              this.count = 5
+            }else{
+              this.$router.push('/')
+            }
+          })
         }).catch(e => {
           this.$snotify.error(e.message)
-          console.log(e)
         })
       },
       facebookLogin(){
         this.provider = new firebase.auth.FacebookAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           // store the user ore wathever
-          this.$router.push('/')
+          this.form.username = result.additionalUserInfo.profile.name
+          this.form.social = true
+          this.form.uid = result.user.uid
+          this.form.photo = result.additionalUserInfo.profile.picture.data.url
+          this.form.email = result.user.email
+          this.form.fname = result.additionalUserInfo.profile.first_name
+          this.form.lname = result.additionalUserInfo.profile.last_name
+
+          this.$axios.$post('register',this.form).then(res => {
+            if(res.message == false){
+              this.count = 5
+            }else{
+              this.$router.push('/')
+            }
+          })
         }).catch(e => {
           this.$snotify.error(e.message)
-          console.log(e)
         })
       },
       GitHubLogin(){
         this.provider = new firebase.auth.GithubAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           // store the user ore wathever
+          this.form.username = result.additionalUserInfo.username
+          this.form.social = true
+          this.form.uid = result.user.uid
+          this.form.photo = result.additionalUserInfo.profile.avatar_url
+          this.form.email = result.additionalUserInfo.profile.email
+          this.form.fname = ''
+          this.form.lname = ''
           console.log(result);
-          //this.$router.push('/')
+          this.$axios.$post('register',this.form).then(res => {
+            if(res.message == false){
+              this.count = 5
+            }else{
+              this.$router.push('/')
+            }
+          })
         }).catch(e => {
           this.$snotify.error(e.message)
-          console.log(e)
         })
       }
     }
