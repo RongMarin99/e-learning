@@ -418,6 +418,18 @@ main {
     width: 350px;
   }
 }
+.form-border{
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  input{
+    border: none;
+    outline: none;
+    &:focus{
+      box-shadow: none;
+    }
+  }
+}
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
