@@ -20,5 +20,9 @@ export default {
     article_popular: 'Popular Articles',
     view_more: 'View More',
     loading: 'Loading...',
-    viewer: 'Viewer'
+    viewer: 'Viewer',
+    forgot_password:'Forgot Password',
+    enter_your_email_and_we_ll_send_a_link_to_reset_your_password:"Enter your email and we'll send a link to reset password.",
+    submit:'Submit',
+    back_to_login:'Back to Login'
 }

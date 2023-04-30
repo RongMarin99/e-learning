@@ -12,11 +12,11 @@
                   <img @click="GitHubLogin" height="40" src="@/assets/image/github.png" alt="">
                 </div>
                 <div>
-                  <p>or use your email account</p> 
+                  <p>or use your email account</p>
                 </div>
                 <div class="email-input">
                   <i class="material-icons">mail</i>
-                  <b-input 
+                  <b-input
                     placeholder="Email"
                     type="email"
                     v-model="form.email"
@@ -25,7 +25,7 @@
                 </div>
                 <div class="email-input">
                   <i class="material-icons">lock</i>
-                  <b-input 
+                  <b-input
                     placeholder="Password"
                     type="password"
                     v-model="form.password"
@@ -37,7 +37,7 @@
                     <p class="mb-0 pl-1">Remember me</p>
                   </div>
                   <div>
-                      Forgot Password?
+                      <nuxt-link to="Forgot-Password">Forget Password?</nuxt-link>
                   </div>
                 </div>
                 <b-button @click="login()" variant="none" class="bg-red text-white px-5 py-3 mt-4" pill >Sign In</b-button>
@@ -78,7 +78,7 @@ export default{
 
         })
       },
-      signInPopup() { 
+      signInPopup() {
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           this.form.social = true
