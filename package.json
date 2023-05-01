@@ -26,6 +26,7 @@
     "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.28.1",
     "nuxt-material-design-icons-iconfont": "^1.0.2",
+    "sweetalert2": "^11.7.3",
     "vue": "^2.7.10",
     "vue-flag-icon": "^2.1.0",
     "vue-server-renderer": "^2.7.10",

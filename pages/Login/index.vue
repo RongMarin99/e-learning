@@ -68,14 +68,14 @@ export default{
             password: '',
             social: false,
             token: ''
-          }
+          },
         }
     },
     methods: {
       login(){
+        var vm = this
         this.form.social = false
         this.$axios.$post('login',this.form).then(res => {
-
         })
       },
       signInPopup() {
