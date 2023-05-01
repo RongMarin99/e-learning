@@ -30,7 +30,7 @@
                       <i class="material-icons pl-2 mr-2" >visibility</i>
                 </div>
 
-                <b-button class="w-100" variant="primary">
+                <b-button @click="resetPassword()" class="w-100" variant="primary p-3">
                     {{ $t("reset_password") }}
                 </b-button>
 
@@ -58,6 +58,18 @@ export default {
                 new_password: null,
                 confirm_password: null,
             }
+        }
+    },
+    methods: {
+        resetPassword(){
+            var input = {
+                token: this.$route.params.token,
+                form: this.form
+            }
+            this.$axios.$post('confirmResetPassword',input)
+                .then(res => {
+                    console.log(res);
+                })
         }
     }
 }
@@ -110,12 +122,5 @@ export default {
         text-decoration: none;
         color: black;
         font-size: 1.2rem;
-
-        &:hover {
-            color: white;
-            background-color: rgba(0,0,0,0.3);
-            padding: 0.4rem;
-            border-radius: 0.3rem;
-        }
       }
 </style>
