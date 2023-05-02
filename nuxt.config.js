@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const fs = require('fs')
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   mode: "universal", 
@@ -85,7 +86,7 @@ export default {
     { src: '~/plugins/axios.js'},
     { src: '~/plugins/flag.js', mode: 'client'},
     { src: '~/plugins/share.js', mode: 'client'},
-    { src: '~/plugins/firebase.js', mode: 'client'},
+    // { src: '~/plugins/firebase.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -123,7 +124,36 @@ export default {
 			'nuxt-i18n',
       '@nuxtjs/sitemap',
       '@nuxt/image',
+      '@nuxtjs/firebase',
   ],
+  firebase: {
+    lazy: false,
+    config: {
+      apiKey: "AIzaSyC8g6DdxyNbtIqnX9fjdk3r9r4sG5xfn_M",
+      authDomain: "e-learning-384002.firebaseapp.com",
+      databaseURL: "https://e-learning-384002-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "e-learning-384002",
+      storageBucket: "e-learning-384002.appspot.com",
+      messagingSenderId: "324671022462",
+      appId: "1:324671022462:web:620060a0d3e4fecdb3ff2f",
+      measurementId: "G-Y350GPN65Y"
+    },
+    onFirebaseHosting: false,
+    services: {
+      messaging: true,
+    }
+  },
+  messaging: {
+    createServiceWorker: true,
+    inject: fs.readFileSync('./static/sw.js') ,
+    actions: [
+      {
+        action: 'goHome',
+        url: 'https://localhost:1200/login'
+      }
+    ],
+    fcmPublicVapidKey: 'BDuG8CJwb1nE0BAhEdQhjEAcD_dPzDfLuBXk6Yc_97JCux9KsFByFSbI14w5fQlmtff4kXEUSnY0WCUNXCm-sIg' 
+  },
   sitemap: {
     hostname: 'https://kroit.net',
     path: '/sitemap',

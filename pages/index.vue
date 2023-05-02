@@ -512,7 +512,12 @@ export default {
       api_key: process.env.BASE_URL,
     }
   },
-  mounted() {
+  async mounted() {
+    const currentToken = await this.$fire.messaging.getToken()
+    console.log(currentToken);
+    await this.$fire.messaging.onMessage(function(payload){
+      alert(payload)
+    })
     this.Counter("value",0,290)
     this.Counter('course',0,15)
     this.Counter('expert',0,186)
