@@ -510,14 +510,12 @@ export default {
     return {
       web_url: process.env.WEB_URL,
       api_key: process.env.BASE_URL,
+      listenersStarted: false,
+      idToken: "",
     }
   },
   async mounted() {
-    const currentToken = await this.$fire.messaging.getToken()
-    console.log(currentToken);
-    await this.$fire.messaging.onMessage(function(payload){
-      alert(payload)
-    })
+    this.startListeners();
     this.Counter("value",0,290)
     this.Counter('course',0,15)
     this.Counter('expert',0,186)
@@ -527,6 +525,54 @@ export default {
   watch: {
   },
   methods: {
+    async startListeners() {
+      await this.startOnMessageListener();
+      await this.startTokenRefreshListener();
+      await this.requestPermission();
+      await this.getIdToken();
+      this.listenersStarted = true;
+    },
+    startOnMessageListener() {
+      try {
+        this.$fire.messaging.onMessage((payload) => {
+          console.info("Message received : ", payload);
+          console.log(payload.notification.body);
+        });
+      } catch (e) {
+        console.error("Error : ", e);
+      }
+    },
+    startTokenRefreshListener() {
+      try {
+        this.$fire.messaging.onTokenRefresh(async () => {
+          try {
+            await this.$fire.messaging.getToken();
+          } catch (e) {
+            console.error("Error : ", e);
+          }
+        });
+      } catch (e) {
+        console.error("Error : ", e);
+      }
+    },
+    async requestPermission() {
+      try {
+        const permission = await Notification.requestPermission();
+        console.log("GIVEN notify perms");
+        console.log(permission);
+      } catch (e) {
+        console.error("Error : ", e);
+      }
+    },
+    async getIdToken() {
+      try {
+        this.idToken = await this.$fire.messaging.getToken();
+        console.log("TOKEN ID FOR this browser");
+        console.log(this.idToken);
+      } catch (e) {
+        console.error("Error : ", e);
+      }
+    },
     Counter(id,start,end,duration=1000){
       var obj = document.getElementById(id);
       var range = end - start;

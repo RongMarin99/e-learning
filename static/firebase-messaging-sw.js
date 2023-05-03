@@ -27,8 +27,10 @@ messaging.onBackgroundMessage(() => {
     notificationOptions);
 });
 
+
 // Setup event listeners for actions provided in the config:
 self.addEventListener('notificationclick', function(e) {
+  alert('hello')
   const actions = [{"action":"http:\u002F\u002Flocalhost:1200\u002Flogin"}]
   const action = actions.find(x => x.action === e.action)
   const notification = e.notification
