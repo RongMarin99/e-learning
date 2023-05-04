@@ -1,5 +1,16 @@
 <template>
   <div>
+    <!-- <div v-if="notification_alert">
+    <audio
+      ref="audio"
+      src="@/assets/sound/notification.mp3"
+      preload
+      loop
+      id="audio"
+      autoplay
+    ></audio>
+    </div> -->
+    
     <main>
       <b-container class="h-100">
         <b-row class="h-100">
@@ -36,7 +47,7 @@
         </b-row>
       </b-container>
     </main>
-
+    <b-button @click="send()" variant="primary">send notification</b-button>
     <!-- start course category -->
     <section class="top-category container-fluid">
       <section class="container position-relative">
@@ -510,7 +521,7 @@ export default {
     return {
       web_url: process.env.WEB_URL,
       api_key: process.env.BASE_URL,
-      listenersStarted: false,
+      notification_alert: false,
       idToken: "",
     }
   },
@@ -525,19 +536,28 @@ export default {
   watch: {
   },
   methods: {
+    send(){
+        let input = {
+          data: this.form
+        }
+        this.$axios.$post('push_notification',input).then(res => {
+          console.log(res);
+        })
+    },
     async startListeners() {
       await this.startOnMessageListener();
       await this.startTokenRefreshListener();
       await this.requestPermission();
       await this.getIdToken();
-      this.listenersStarted = true;
+    
     },
     startOnMessageListener() {
       try {
         this.$fire.messaging.onMessage((payload) => {
           console.info("Message received : ", payload);
-          console.log(payload.notification.body);
-        });
+          let notification = new Audio('/sound/notification.mp3');
+          notification.play()
+          });
       } catch (e) {
         console.error("Error : ", e);
       }
@@ -569,9 +589,35 @@ export default {
         this.idToken = await this.$fire.messaging.getToken();
         console.log("TOKEN ID FOR this browser");
         console.log(this.idToken);
+        await this.$fire.messaging.subscribeToTopic(this.idToken, 'allUsers')
+            .then(response=> {
+              console.log(JSON.stringify(response));
+            })
+            .catch(function(error) {
+              console.log('Error subscribing to topic:', error);
+            });
+      //  await this.subscribeTokenToTopic(this.idToken)
       } catch (e) {
         console.error("Error : ", e);
       }
+    },
+    async subscribeTokenToTopic(token, topic="testTopic") {
+        await fetch(`https://iid.googleapis.com/iid/v1/${token}/rel/topics/${topic}`, {
+            method: 'POST',
+            headers: new Headers({
+              Authorization: `key=AAAAS5fmpX4:APA91bGWPsdApIRw8Ku6lwA33UhiqEDRXjbJKiWuU5XOSFE0l5wNxR0htMjDlvooNu3S2IKauapB2Co4UrG70oRkj8BtdCBJAA6mwA0EwO219QZ5N8559YcXd5CmTfv5ackrsT5uWcBk`
+            })
+          })
+            .then((response) => {
+              if (response.status < 200 || response.status >= 400) {
+                console.log(response.status, response);
+              }
+              console.log(`"${topic}" is subscribed`);
+            })
+            .catch((error) => {
+              console.error(error.result);
+            });
+          return true;
     },
     Counter(id,start,end,duration=1000){
       var obj = document.getElementById(id);

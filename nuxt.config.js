@@ -154,6 +154,7 @@ export default {
     ],
     fcmPublicVapidKey: 'BDuG8CJwb1nE0BAhEdQhjEAcD_dPzDfLuBXk6Yc_97JCux9KsFByFSbI14w5fQlmtff4kXEUSnY0WCUNXCm-sIg' 
   },
+  firestore: true,
   sitemap: {
     hostname: 'https://kroit.net',
     path: '/sitemap',

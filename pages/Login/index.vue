@@ -1,6 +1,5 @@
 <template>
     <b-container>
-      <b-button @click="send()" variant="primary">send notification</b-button>
         <b-row>
           <b-col cols="6" class="form-login">
             <div class="form">
@@ -73,21 +72,6 @@ export default{
         }
     },
     methods: {
-      async send(){
-        const message = {
-            webpush: {
-              notification: {
-                actions: [
-                  {
-                    action: 'randomName',
-                    title: 'Go to URL',
-                  },
-                ],
-              },
-            },
-          }
-       await this.$axios.$post('https://fcm.googleapis.com//v1/projects/e-learning-384002/messages:send')
-      },
       login(){
         var vm = this
         this.form.social = false
