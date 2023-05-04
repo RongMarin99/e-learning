@@ -589,13 +589,6 @@ export default {
         this.idToken = await this.$fire.messaging.getToken();
         console.log("TOKEN ID FOR this browser");
         console.log(this.idToken);
-        await this.$fire.messaging.subscribeToTopic(this.idToken, 'allUsers')
-            .then(response=> {
-              console.log(JSON.stringify(response));
-            })
-            .catch(function(error) {
-              console.log('Error subscribing to topic:', error);
-            });
       //  await this.subscribeTokenToTopic(this.idToken)
       } catch (e) {
         console.error("Error : ", e);
