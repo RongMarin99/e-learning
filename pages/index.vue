@@ -537,13 +537,29 @@ export default {
   },
   methods: {
     send(){
-        let input = {
-          data: this.form
-        }
-        this.$axios.$post('push_notification',input).then(res => {
-          console.log(res);
-        })
+        // let input = {
+        //   data: this.form
+        // }
+        // this.$axios.$post('push_notification',input).then(res => {
+        //   console.log(res);
+        // })
+        this.sendPaymentNotification()
     },
+    sendPaymentNotification() {
+			let vm = this
+			const data = {
+				//to: vm.getToSellTopic(),
+        to: '/topics/e-learning',
+				notification: {
+					title: 'New Request',
+					click_action: window.location.origin + '/request',
+					body:
+						'New Payment has been created from: '
+				},
+			}
+
+			this.$store.dispatch('notification_topic/sendNoficaitions', data)
+		},
     async startListeners() {
       await this.startOnMessageListener();
       await this.startTokenRefreshListener();
@@ -589,28 +605,20 @@ export default {
         this.idToken = await this.$fire.messaging.getToken();
         console.log("TOKEN ID FOR this browser");
         console.log(this.idToken);
-      //  await this.subscribeTokenToTopic(this.idToken)
+        await this.subscribeTokenToTopic(this.idToken)
+        this.$store.dispatch(
+            'auth/setUserAuthToken',
+            this.idToken
+        )
       } catch (e) {
         console.error("Error : ", e);
       }
     },
     async subscribeTokenToTopic(token, topic="testTopic") {
-        await fetch(`https://iid.googleapis.com/iid/v1/${token}/rel/topics/${topic}`, {
-            method: 'POST',
-            headers: new Headers({
-              Authorization: `key=AAAAS5fmpX4:APA91bGWPsdApIRw8Ku6lwA33UhiqEDRXjbJKiWuU5XOSFE0l5wNxR0htMjDlvooNu3S2IKauapB2Co4UrG70oRkj8BtdCBJAA6mwA0EwO219QZ5N8559YcXd5CmTfv5ackrsT5uWcBk`
-            })
-          })
-            .then((response) => {
-              if (response.status < 200 || response.status >= 400) {
-                console.log(response.status, response);
-              }
-              console.log(`"${topic}" is subscribed`);
-            })
-            .catch((error) => {
-              console.error(error.result);
-            });
-          return true;
+      var input = {
+        token: token
+      }
+      await this.$axios.$post('user/update_fcm_token', input)
     },
     Counter(id,start,end,duration=1000){
       var obj = document.getElementById(id);
