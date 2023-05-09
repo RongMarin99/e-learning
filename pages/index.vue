@@ -249,7 +249,7 @@
                 <hr>
                 <b-row>
                   <b-col cols="12" class="d-flex justify-content-end">
-                    <b-button pill class="register">Buy Now</b-button>
+                    <b-button pill class="register" to="Courses/Python">Buy Now</b-button>
                   </b-col>
                 </b-row>
               </b-card-body>
@@ -656,6 +656,3 @@ export default {
   }
 }
 </script>
-<style>
-
-</style>

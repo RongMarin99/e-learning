@@ -431,6 +431,23 @@ main {
   }
 }
 
+.bg-image-course{
+  height: 50vh;
+  background-position: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.76);
+  }
+}
+
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   main{
