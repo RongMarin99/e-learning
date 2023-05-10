@@ -2,7 +2,6 @@ import swal from 'sweetalert2'
 
 export default function ({ $axios, store, app, redirect }) {
     $axios.onRequest((request) => {
-        console.log(request);
         // const token = store.state.auth.token || ''
         // if (token) {
         //     request.headers.common.Authorization = `Bearer ${token}`
@@ -13,9 +12,11 @@ export default function ({ $axios, store, app, redirect }) {
         // }
         let loading = true
         let overlay = true
-        if (request.data.length>0){
-            loading = true
-            overlay = true
+        if (request.data != undefined) {
+            if (request.data.loading != undefined)
+                loading = request.data.loading
+            if (request.data.overlay != undefined)
+                overlay = request.data.overlay
         }
         store.dispatch('loading/setInProgress', loading)
         return request

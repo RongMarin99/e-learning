@@ -233,6 +233,7 @@ export default {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     WEB_URL: process.env.WEB_URL,
     API_URL: process.env.API_URL,
-    BASE_URL: process.env.BASE_URL
+    BASE_URL: process.env.BASE_URL,
+    ADMIN_TOPIC: process.env.TOPIC_ADMIN
   }
 }

@@ -17,8 +17,8 @@ export const getters = {
 }
 
 export const mutations = {
-    SAVE_TOKEN(state, token) {
-        state.token = token
+    SAVE_TOKEN(state, access_token) {
+        state.token = access_token
     },
 
     FETCH_USER_SUCCESS(state, user) {
@@ -51,14 +51,17 @@ export const mutations = {
 }
 
 export const actions = { 
-    login({ commit }, { token, user, role_modules, auth_level }) {
-				commit('SAVE_TOKEN', token)
-				commit('FETCH_USER_SUCCESS', user)
-				commit('SET_ROLE_MODULE', role_modules)
-				commit('SET_AUTH_LEVEL', auth_level)
-				Cookies.set('pms-chhaythai-cookies', token, {
-					expires: 7
-				})
+    login({ commit }, { access_token, user, role_modules, auth_level }) {
+        console.log(user);
+       
+        commit('SAVE_TOKEN', access_token)
+        commit('FETCH_USER_SUCCESS', user)
+       
+        // commit('SET_ROLE_MODULE', role_modules)
+        // commit('SET_AUTH_LEVEL', auth_level)
+        // Cookies.set('pms-chhaythai-cookies', token, {
+        //     expires: 7
+        // })
 	}, 
     setUserAuthToken({ commit }, token) {
 		commit('SET_USER_AUTH_TOKEN', token)

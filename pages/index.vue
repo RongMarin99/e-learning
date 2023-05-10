@@ -47,7 +47,7 @@
         </b-row>
       </b-container>
     </main>
-    <b-button @click="send()" variant="primary">send notification</b-button>
+    <b-button @click="sendNotification()" variant="primary">send notification</b-button>
     <!-- start course category -->
     <section class="top-category container-fluid">
       <section class="container position-relative">
@@ -523,6 +523,7 @@ export default {
       api_key: process.env.BASE_URL,
       notification_alert: false,
       idToken: "",
+      admin_topic: process.env.ADMIN_TOPIC
     }
   },
   async mounted() {
@@ -536,16 +537,7 @@ export default {
   watch: {
   },
   methods: {
-    send(){
-        // let input = {
-        //   data: this.form
-        // }
-        // this.$axios.$post('push_notification',input).then(res => {
-        //   console.log(res);
-        // })
-        this.sendPaymentNotification()
-    },
-    sendPaymentNotification() {
+    sendNotification() {
 			let vm = this
 			const data = {
 				//to: vm.getToSellTopic(),
@@ -614,10 +606,12 @@ export default {
         console.error("Error : ", e);
       }
     },
-    async subscribeTokenToTopic(token, topic="testTopic") {
+    async subscribeTokenToTopic(token) {
       var input = {
-        token: token
+        token: token,
+        topic: this.admin_topic
       }
+      this.in_progress = false
       await this.$axios.$post('user/update_fcm_token', input)
     },
     Counter(id,start,end,duration=1000){

@@ -93,11 +93,12 @@ export default{
         this.form.social = false
         this.form.username = this.form.fname+" "+this.form.lname
         this.$axios.$post('register',this.form).then(res => {
-          if(res.error!=undefined){
-            this.count = 5
-          }else{
-           // this.$router.push('/')
-          }
+          this.$store.dispatch('auth/login',res)
+          // if(res.error!=undefined){
+          //   this.count = 5
+          // }else{
+          //  // this.$router.push('/')
+          // }
         })
       },
       signInPopup() { 
@@ -114,11 +115,12 @@ export default{
           this.form.lname = name[1]
         
           this.$axios.$post('register',this.form).then(res => {
-            if(res.message == false){
-              this.count = 5
-            }else{
-              this.$router.push('/')
-            }
+            console.log(res);
+            // if(res.message == false){
+            //   this.count = 5
+            // }else{
+            //   this.$router.push('/')
+            // }
           })
         }).catch(e => {
           this.$snotify.error(e.message)
