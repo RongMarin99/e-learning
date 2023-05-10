@@ -60,7 +60,6 @@ export const mutations = {
                       "link": "https://dummypage.com"
                     }
                   }
-                
               }
 		})
 			.then()
