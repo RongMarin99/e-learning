@@ -360,29 +360,35 @@ main {
   background-color: var(--color-red);
   border: none;
 }
-.line{
+
+.line {
   width: 60px;
   height: 4px;
 }
-.icon-avatar{
-  img{
+
+.icon-avatar {
+  img {
     cursor: pointer;
   }
 }
-.form-login{
+
+.form-login {
   height: 100vh;
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: center;
-  .form-register{
+
+  .form-register {
     height: 600px !important;
   }
-  .form{
+
+  .form {
     background-color: white;
     width: 65%;
     height: 550px;
-    form{
+
+    form {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -390,7 +396,8 @@ main {
       flex-direction: column;
     }
   }
-  .email-input{
+
+  .email-input {
     display: flex;
     align-items: center;
     color: gray;
@@ -399,60 +406,99 @@ main {
     padding: 10px;
     margin-bottom: 10px;
     background-color: rgba(214, 214, 214, 0.226);
-    input{
+
+    input {
       border: none !important;
       outline: none !important;
       background-color: transparent;
-      &:focus{
+
+      &:focus {
         outline: none;
         box-shadow: none;
       }
     }
   }
 }
-.already_register{
+
+.already_register {
   position: absolute;
   right: 10px;
   top: 10px;
-  div{
+
+  div {
     width: 350px;
   }
 }
-.form-border{
+
+.form-border {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 5px;
-  input{
+
+  input {
     border: none;
     outline: none;
-    &:focus{
+
+    &:focus {
       box-shadow: none;
     }
   }
 }
 
-.bg-image-course{
+.bg-image-course {
   height: 50vh;
   background-position: contain;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  &::before{
+  padding: 16vh 0px;
+  &::before {
     content: "";
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,.76);
+    background-color: rgba(0, 0, 0, .76);
+  }
+}
+
+.page-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 20px 0;
+  z-index: 99;
+  background-color: rgba(255, 255, 255, 0.808);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.055);
+  // background-color: rgba(255, 255, 255, 0.15);
+}
+
+.page-header.is-sticky {
+  position: fixed;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.055);
+  padding: 8px 0;
+  backdrop-filter: blur(10px);
+  animation: slideDown 0.35s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
   }
 }
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
-  main{
+  main {
     height: fit-content;
   }
+
   h4 {
     font-size: 1.3rem;
   }
@@ -462,10 +508,11 @@ main {
   }
 
   .copy {
-    p{
+    p {
       text-align: left !important;
     }
   }
+
   .login {
     padding: 7px 30px;
   }
@@ -473,43 +520,54 @@ main {
   .register {
     padding: 7px 30px;
   }
-  .category-title{
+
+  .category-title {
     margin-left: 0px;
   }
-  .lorem{
+
+  .lorem {
     margin-left: 0px;
   }
-  .course{
+
+  .course {
     margin-left: 0px;
   }
+
   .main-right {
     display: flex;
     justify-content: center;
     margin-bottom: 5rem;
+
     img {
       height: 350px;
       align-items: center;
     }
   }
+
   .category {
     top: 10px !important;
     height: fit-content !important;
   }
+
   .top-category .category-title {
     float: left;
     margin-top: 14rem;
   }
+
   .category .box-category {
     width: 49.5% !important;
     margin-bottom: 10px;
   }
-  .master-skill{
+
+  .master-skill {
     height: 1250px;
   }
-  #navigation-bar{
+
+  #navigation-bar {
     top: 0px !important;
   }
-  .header{
+
+  .header {
     position: fixed;
     background-color: white;
     width: 100%;
@@ -517,16 +575,19 @@ main {
     top: 0px;
     margin-top: 0px;
   }
-  .start-category{
+
+  .start-category {
     justify-content: flex-start !important;
     margin-bottom: 10px;
   }
 }
-.forgot-password-box{
+
+.forgot-password-box {
   width: 100%;
   background-color: var(--color-red);
   height: 30vh;
-  .card{
+
+  .card {
     padding: 10px;
     width: 490px;
     height: 450px;
@@ -537,13 +598,14 @@ main {
     transform: translate(-50%, -50%);
   }
 }
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) {
-  #navigation-bar{
+  #navigation-bar {
     top: 0px !important;
   }
 
-  .header{
+  .header {
     position: fixed;
     background-color: white;
     width: 100%;
@@ -551,6 +613,7 @@ main {
     top: 0px;
     margin-top: 0px;
   }
+
   h4 {
     font-size: 1.3rem;
   }
@@ -566,38 +629,47 @@ main {
   .register {
     padding: 7px 30px;
   }
-  main{
+
+  main {
     height: fit-content;
     padding-bottom: 8rem;
   }
+
   .main-right {
     display: flex;
     justify-content: center;
+
     img {
       height: 350px;
       align-items: center;
     }
   }
+
   .category {
     top: 10px !important;
     height: fit-content !important;
   }
+
   .top-category .category-title {
     float: left;
     margin-top: 14rem;
   }
+
   .category .box-category {
     width: 49.5% !important;
     margin-bottom: 10px;
   }
-  .video-category{
+
+  .video-category {
     margin-left: 0px;
   }
-  .master-skill{
+
+  .master-skill {
     height: 1300px;
   }
+
   .copy {
-    p{
+    p {
       text-align: left !important;
     }
   }
@@ -605,10 +677,11 @@ main {
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 991.98px) {
-  #navigation-bar{
+  #navigation-bar {
     top: 0px !important;
   }
-  .header{
+
+  .header {
     position: fixed;
     background-color: white;
     width: 100%;
@@ -616,6 +689,7 @@ main {
     top: 0px;
     margin-top: 0px;
   }
+
   .timer {
     justify-content: flex-start !important;
   }
@@ -641,19 +715,23 @@ main {
   h1 {
     font-size: 38px;
   }
+
   .category {
     top: 10px !important;
     height: fit-content !important;
   }
+
   .top-category .category-title {
     float: left;
     margin-top: 14rem;
   }
+
   .category .box-category {
     width: 49.5% !important;
     margin-bottom: 10px;
   }
-  .master-skill{
+
+  .master-skill {
     height: 850px;
   }
 }
@@ -688,15 +766,18 @@ main {
     top: 10px !important;
     height: fit-content !important;
   }
+
   .top-category .category-title {
     float: left;
     margin-top: 14rem;
   }
+
   .category .box-category {
     width: 49.5% !important;
     margin-bottom: 10px;
   }
-  .master-skill{
+
+  .master-skill {
     height: 850px;
   }
 }

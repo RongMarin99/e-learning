@@ -1,7 +1,7 @@
 <template>
     <div>
       <!-- Start Header -->
-        <header id="navigation-bar" class="p-1 header">
+        <header class="p-1 header page-header">
           <b-container>
             <header>
               <b-navbar toggleable="lg">
@@ -26,7 +26,7 @@
                   <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">
                     <b-nav-form>
-                      <b-button to="/login" pill variant="light" class="mr-2 login">Login</b-button>
+                      <b-button to="/login" pill variant="light" class="mr-2 login login-custome">Login</b-button>
                       <b-button to="/register" pill class="register">Register</b-button>
                     </b-nav-form>
                   </b-navbar-nav>
@@ -169,21 +169,32 @@ export default{
         }
     },
     mounted(){
-        let nav = document.getElementById("navigation-bar");
-        let login_button = document.querySelector('.login')
-        let sticky = nav.offsetTop;
-        window.onscroll = function() {sticker()};
-        function sticker() {
-          if (window.pageYOffset >= sticky) {
-              nav.style.top="0px"
-              login_button.classList.add("login-custome")
-              nav.classList.add("sticky")
-          } else {
-              nav.style.top="10px"
-              login_button.classList.remove("login-custome");
-              nav.classList.remove("sticky");
-          }
-      }
+      //   let nav = document.getElementById("navigation-bar");
+      //   let login_button = document.querySelector('.login')
+      //   let sticky = nav.offsetTop;
+      //   window.onscroll = function() {sticker()};
+      //   function sticker() {
+      //     if (window.pageYOffset >= sticky) {
+      //         nav.style.top="0px"
+      //         login_button.classList.add("login-custome")
+      //         nav.classList.add("sticky")
+      //     } else {
+      //         nav.style.top="10px"
+      //         login_button.classList.remove("login-custome");
+      //         nav.classList.remove("sticky");
+      //     }
+      // }
+      const header = document.querySelector(".page-header");
+      const toggleClass = "is-sticky";
+
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 150) {
+          header.classList.add(toggleClass);
+        } else {
+          header.classList.remove(toggleClass);
+        }
+      });
     },
     methods: {
         switchLang(locale){
