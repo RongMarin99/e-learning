@@ -37,10 +37,12 @@
         </header>
       <!-- End Header -->
 
-        <Nuxt />
-
+      <div style="height: fit-content;">
+        <Nuxt/>
+      </div>
+        
       <!-- Start Footer -->
-        <footer class="container-fluid float-left footer">
+        <footer class="container-fluid footer">
           <section class="container">
             <b-row class="pt-5">
               <b-col xl="4" lg="4" md="4" sm="12" xs="12" cols="12">

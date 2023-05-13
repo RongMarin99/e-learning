@@ -11,6 +11,7 @@
   --color-red: #FF6575;
   --color-gray: #685F78;
   --color-dark-blue: #002058;
+  --color-green: #4ff097;
 }
 
 h1 {
@@ -30,6 +31,13 @@ h1 {
 
 .color-red {
   color: var(--color-red);
+}
+
+.color-green{
+  color: var(--color-green);
+}
+.bg-light-green{
+  background-color: rgba(69, 200, 129, 0.22);
 }
 
 body {
@@ -359,6 +367,41 @@ main {
 .bg-red {
   background-color: var(--color-red);
   border: none;
+  &:hover{
+    background-color: var(--color-red) !important;
+    opacity: 1;
+    box-shadow: none !important;
+  }
+  &:focus{
+    background-color: var(--color-red) !important;
+    opacity: 1;
+    box-shadow: none !important;
+  }
+  &:active{
+    background-color: var(--color-red) !important;
+    opacity: 1;
+    box-shadow: none !important;
+  }
+}
+.border-light{
+  background-color: transparent !important;
+  border: 1px solid var(--color-gray) !important;
+  color: var(--color);
+  &:hover{
+    background-color: transparent !important;
+    color: var(--color) !important;
+    box-shadow: none !important;
+  }
+  &:focus{
+    background-color: transparent !important;
+    color: var(--color) !important;
+    box-shadow: none !important;
+  }
+  &:active{
+    background-color: transparent !important;
+    color: var(--color) !important;
+    box-shadow: none !important;
+  }
 }
 
 .line {
@@ -446,19 +489,19 @@ main {
 }
 
 .bg-image-course {
-  height: 50vh;
-  background-position: contain;
+  background-position: top;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto 60vh;
   position: relative;
   padding: 16vh 0px;
+  background-color: transparent;
   &::before {
     content: "";
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 60vh;
     background-color: rgba(0, 0, 0, .76);
   }
 }
@@ -481,6 +524,25 @@ main {
   padding: 8px 0;
   backdrop-filter: blur(10px);
   animation: slideDown 0.35s ease-out;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: none; 
+  background-color: transparent !important; 
+}
+.nav-tabs .nav-link{
+  padding: 15px 20px;
+  display: block;
+  color: black;
+  opacity: 0.9;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+.line-bottom-blue{
+  opacity: 1;
+  color: var(--color-red) !important;
+  border-bottom: 2px solid var(--color-red) !important;
 }
 
 @keyframes slideDown {
