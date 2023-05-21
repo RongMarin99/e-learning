@@ -69,7 +69,57 @@
                                 Save
                             </b-button>
                         </b-col>
-                        <hr>
+                        
+                    </b-row>
+                    <hr class="mt-0">
+
+                    <b-row>
+                        <b-col cols="12" class="pl-4">
+                            <h6 class="pl-3">Avatar</h6>
+                            <div>
+                                <b-avatar src="https://placekitten.com/300/300" size="6rem"></b-avatar>
+                            </div>
+                        </b-col>
+                    </b-row>
+                    <hr >
+
+                    <b-row class="p-4">
+                        <b-col cols="6">
+                            <b-form-group
+                                    label="First Name"
+                                >
+                                <b-input-group>
+                                        <template #prepend>
+                                            <div class="rounded-left bg-form d-flex align-items-center justify-content-center px-2">
+                                                <i class="material-icons">person</i>
+                                            </div>
+                                        </template>
+
+                                        <b-input pill placeholder="First Name">
+
+                                        </b-input>
+                                
+                                </b-input-group>
+                            </b-form-group>
+                        </b-col>
+                        <b-col cols="6">
+                            <b-form-group
+                                    label="Last Name"
+                                >
+                                <b-input-group>
+                                        <template #prepend>
+                                            <div class="rounded-left bg-form d-flex align-items-center justify-content-center px-2">
+                                                <i class="material-icons">person</i>
+                                            </div>
+                                        </template>
+
+                                        <b-input pill placeholder="Last Name">
+
+                                        </b-input>
+                                
+                                </b-input-group>
+                            </b-form-group>
+                        </b-col>
                     </b-row>
                 </div>
             </b-col>
