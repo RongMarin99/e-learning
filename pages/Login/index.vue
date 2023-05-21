@@ -57,8 +57,8 @@
 </template>
 <script>
 import firebase from 'firebase'
+import swal from 'sweetalert2'
 export default{
-    middleware: 'auth',
     layout: 'noLayout',
     data(){
         return {
@@ -79,20 +79,32 @@ export default{
         })
       },
       signInPopup() {
+        var vm = this
         this.provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(this.provider).then(result => {
           this.form.social = true
           this.form.uid = result.user.uid
           this.form.token = result.user.refreshToken
           this.form.email = result.user.email
-          this.$axios.$post('login',this.form).then(res => {
-            console.log(res);
+          this.$axios.$post('login',this.form).then(response => {
+            console.log(response);
+            vm.$store.dispatch('auth/login', {
+              token: response.access_token,
+              expired_date: response.expired_date,
+              user: response.user,
+            })
+
+            this.$router.push({ path: '/' })
           })
           // this.$router.push('/')
-        }).catch(e => {
-          this.$snotify.error(e.message)
-          console.log(e)
-        })
+        }).catch(function(error) {
+					vm.inProgress = false
+					swal.fire({
+						type: 'warning',
+						title: vm.$t('login'),
+						text: 'Invalid credentials'
+					})
+				})
       },
       facebookLogin(){
         this.provider = new firebase.auth.FacebookAuthProvider()

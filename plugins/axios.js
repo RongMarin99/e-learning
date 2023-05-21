@@ -2,10 +2,10 @@ import swal from 'sweetalert2'
 
 export default function ({ $axios, store, app, redirect }) {
     $axios.onRequest((request) => {
-        // const token = store.state.auth.token || ''
-        // if (token) {
-        //     request.headers.common.Authorization = `Bearer ${token}`
-        // }
+        const token = store.state.auth.token || ''
+        if (token) {
+            request.headers.common.Authorization = `Bearer ${token}`
+        }
         // const locale = store.getters['lang/locale']
         // if (locale) {
         //     request.headers['Accept-Language'] = locale

@@ -161,9 +161,63 @@
                                             
                                         </div>
                                     </b-tab>
-                                    <b-tab title="Discussion"><p>I'm a disabled tab!</p></b-tab>
-                                    <b-tab title="Review"><p>I'm a disabled tab!</p></b-tab>
-                                    <b-tab title="Instructor"><p>I'm a disabled tab!</p></b-tab>
+                                    <b-tab title="Discussion">
+                                        <div class="p-5 d-flex align-items-center flex-column justify-content-center flex-dera">
+                                            <i class="material-icons color-dark-blue" style="font-size: 10rem;">speaker_notes_off</i>
+                                            <h3 class="color-dark-blue">No Discussion Found</h3>   
+                                        </div>
+                                    </b-tab>
+                                    <b-tab title="Instructor">
+                                        <div class="pt-2 pb-5">
+                                            <h4 class="color-dark-blue pb-2">Meet Your Instructor</h4>
+                                            <b-card >
+                                                <template #header>
+                                                    <h5 class="mb-0 color-dark-blue">Rong Marin</h5>
+                                                </template>
+                                                <b-card-text>
+                                                    <b-row>
+                                                        <b-col cols="7">
+                                                            <b-avatar size="3.5rem" variant="info" src="https://placekitten.com/400/400"></b-avatar>
+                                                            <b-badge class="custome-badge">
+                                                               <p class="mb-0">Instructor</p> 
+                                                            </b-badge>
+                                                        </b-col>
+                                                        <b-col cols="5">
+                                                           <b-card>
+                                                             <b-row>
+                                                                <b-col cols="6" class="d-flex align-items-center">
+                                                                    <i class="material-icons color-dark-blue">school</i>
+                                                                    <p class="mb-0 pl-2 color-dark-blue">0 Students</p>
+                                                                </b-col>
+                                                                <b-col cols="6" class="d-flex align-items-center">
+                                                                  <i class="material-icons color-dark-blue">computer</i> 
+                                                                  <p class="mb-0 pl-2 color-dark-blue">1 Courses</p>
+                                                                </b-col>
+                                                                <b-col cols="12" class="d-flex align-items-center mt-4">
+                                                                  <i class="material-icons color-dark-blue">card_membership</i> 
+                                                                  <p class="mb-0 pl-2 color-dark-blue"> Author Level 1</p>
+                                                                </b-col>
+                                                             </b-row>
+
+                                                           </b-card>
+                                                        </b-col>
+                                                    </b-row>
+                                                    <b-row>
+                                                        <b-col cols="12">
+                                                            <p class="color-dark-blue mb-0">
+                                                                About Instructor
+                                                            </p>
+                                                        </b-col>
+                                                        <b-col cols="12" class="mt-2">
+                                                            <p>
+                                                                I'm a Rong Marin. I'm here to share my IT knowledge experience via recorded videos. More: t.me/HKimhab
+                                                            </p>
+                                                        </b-col>
+                                                    </b-row>
+                                                </b-card-text>
+                                            </b-card>
+                                        </div>
+                                    </b-tab>
                                 </b-tabs>
                             </div>
                         </b-col>
@@ -215,7 +269,11 @@
                                 </b-row>
                                 <b-row class="mt-4">
                                     <b-col cols="12">
-                                        <b-button block class="py-3 bg-red d-flex align-items-center justify-content-center">
+                                        <b-button 
+                                          block 
+                                          class="py-3 bg-red d-flex align-items-center justify-content-center"
+                                          @click="Enroll()"
+                                        >
                                             Enroll the course
                                             <i class="pl-2 material-icons">arrow_forward</i>
                                         </b-button>
@@ -283,11 +341,35 @@
                 </b-container>
             </div>
        </b-container>
+
+       <show-alert
+         ref="show_alert_error"
+       />
+       
     </div>
 </template>
 
 <script>
 export default{
-   
+   data(){
+    return {
+        
+    }
+   },
+   components: {
+        ShowAlert: () => import('~/components/ShowAlert.vue')
+   },
+   methods: {
+    Enroll(){
+        if(this.isLogin()){
+            
+        }else{
+            this.$refs.show_alert_error.showAlert()
+
+        }
+       
+    },
+    
+   }
 }
 </script>

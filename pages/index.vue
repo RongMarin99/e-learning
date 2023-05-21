@@ -47,7 +47,7 @@
         </b-row>
       </b-container>
     </main>
-    <b-button @click="sendNotification()" variant="primary">send notification</b-button>
+   
     <!-- start course category -->
     <section class="top-category container-fluid">
       <section class="container position-relative">
@@ -527,7 +527,7 @@ export default {
     }
   },
   async mounted() {
-    this.startListeners();
+   // this.startListeners();
     this.Counter("value",0,290)
     this.Counter('course',0,15)
     this.Counter('expert',0,186)

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import moment from 'moment'
-if (!Vue.__my_mixin__) {
-	Vue.__my_mixin__ = true
+import Cookies from 'js-cookie'
+
+
 	Vue.mixin({
 		methods: {
 			convertDateEnToKh(date) {
@@ -108,6 +109,7 @@ if (!Vue.__my_mixin__) {
 				}
 				return numbers;
 			},
+
 			getNameByLocalByLang(name, local = 'latin_name') {
 				if (name != '') {
 					try {
@@ -124,6 +126,59 @@ if (!Vue.__my_mixin__) {
 					return null
 				}
 		    },
+
+			makeLink(route) {
+				const currentLange = this.$store.getters['lang/locale']
+				if (currentLange != this.$i18n.defaultLocale) {
+					return `/${currentLange}${route}`
+				}
+				return route
+			},
+
+			/**
+			 * check string if null
+			 * @param {*} value
+			 * @param {*} str
+			 */
+			nullToVoid(value, str = '') {
+				if (
+					value == null ||
+					value == '' ||
+					typeof value == undefined ||
+					typeof value == 'undefined' ||
+					value == 'null' ||
+					value == undefined ||
+					value == 'undefined'
+				) {
+					return str
+				} else {
+					return value
+				}
+			},
+			/**
+			 * check empty object
+			 * @param {*} obj
+			 */
+			isEmpty(obj) {
+				for (var key in obj) {
+					if (obj.hasOwnProperty(key)) return false
+				}
+				return true
+			},
+
+			truncate(value, length) {
+				length = length || 15
+				if (!value || typeof value !== 'string') return ''
+				if (value.length <= length) return value
+				return value.substring(0, length) + '...'
+			},
+
+			isLogin(){
+				if( this.nullToVoid(this.$store.getters['auth/user'])!='' && this.nullToVoid(Cookies.get('e'))!='' ){
+					return true
+				}else{
+					return false
+				}
+			}
 		}
 	})
-}

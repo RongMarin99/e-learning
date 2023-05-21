@@ -25,10 +25,36 @@
             
                   <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">
-                    <b-nav-form>
+
+                    <b-nav-item-dropdown no-caret right v-if="nullToVoid(user)!=''" class="profile-icon mt-0">
+                      <!-- Using 'button-content' slot -->
+                      <template #button-content>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <b-avatar variant="info" :src="user.photo"></b-avatar>
+                          &nbsp;
+                          <p class=" mb-0 color-dark-blue">Rong Marin</p>
+                        </div>
+                        
+                      </template>
+                      <b-dropdown-item to="/Profile">
+                        <div class="d-flex align-items-center">
+                          <i class="material-icons color-dark-blue">account_circle</i>
+                          <p class="mb-0 pl-2 color-dark-blue">Profile</p>
+                        </div>
+                      </b-dropdown-item>
+                      <b-dropdown-item @click="logout()" >
+                        <div class="d-flex align-items-center">
+                          <i class="material-icons color-dark-blue">logout</i>
+                          <p class="mb-0 pl-2 color-dark-blue">Log Out</p>
+                        </div>
+                      </b-dropdown-item>
+                    </b-nav-item-dropdown>
+
+                    <b-nav-form v-else>
                       <b-button to="/login" pill variant="light" class="mr-2 login login-custome">Login</b-button>
                       <b-button to="/register" pill class="register">Register</b-button>
                     </b-nav-form>
+
                   </b-navbar-nav>
                 </b-collapse>
               </b-navbar>
@@ -55,7 +81,18 @@
               </b-col>
               <b-col xl="4" lg="4" md="4" sm="12" xs="12" cols="12">
                 <h4 class="color-dark-blue">For Student</h4>
-                <ul class="pl-0">
+                <ul class="pl-0" v-if="nullToVoid(user)!=''">
+                  <li>
+                    <nuxt-link to="/profile">Profile</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="">Subscription</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link to="">Dashboard</nuxt-link>
+                  </li>
+                </ul>
+                <ul class="pl-0" v-else>
                   <li>
                     <nuxt-link to="/profile">Profile</nuxt-link>
                   </li>
@@ -162,7 +199,8 @@ export default{
     computed: {
       ...mapGetters({
         inProgress: 'loading/getInProgress',
-        overlay: 'loading/getOverlay'
+        overlay: 'loading/getOverlay',
+        user: 'auth/user'
       }),
     },
     data(){
@@ -207,7 +245,15 @@ export default{
         },
         onSearch(){
           this.$router.push({path: `/Search/${this.search}`});
-        }
+        },
+        async logout() {
+          //let device_id = Cookies.get('vip-app-browser-id')
+          // Log out the user.
+          await this.$store.dispatch('auth/logout')
+          // Redirect to login
+          // this.$router.push({ path: '/' })
+          location.reload();
+        },
     }
 }
 </script>
@@ -237,9 +283,7 @@ body {
   margin-top: 10px;
   margin-left:5px;
 }
-li a.nuxt-link-exact-active {
-    color: #FD7237 !important;
-}
+
 .loader {
 		--clr: rgb(25, 118, 210);
 		/* color of spining  */

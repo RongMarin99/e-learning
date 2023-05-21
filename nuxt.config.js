@@ -74,8 +74,10 @@ export default {
     ],
   },
   router: {
-    middleware: ['auth']
+    middleware: ['auth', 'init-store'],
+		linkActiveClass: 'active',
   },
+  //serverMiddleware: [{ path: "/middleware", handler: "~/middleware/init-store.js" }],
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/style/main.scss'
@@ -84,6 +86,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/axios.js'},
+    '~/plugins/main.js',
     { src: '~/plugins/flag.js', mode: 'client'},
     { src: '~/plugins/share.js', mode: 'client'},
     { src: '~/plugins/firebase.js', mode: 'client' },
@@ -125,6 +128,7 @@ export default {
       '@nuxtjs/sitemap',
       '@nuxt/image',
       '@nuxtjs/firebase',
+      "cookie-universal-nuxt",
   ],
   firebase: {
     lazy: false,

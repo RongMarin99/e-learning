@@ -554,6 +554,29 @@ main {
     transform: translateY(0);
   }
 }
+.custome-badge{
+  background-color: #ff657425 !important;
+  color: var(--color-red) !important;
+  font-weight: 500;
+  padding: 5px 10px; 
+}
+.profile-icon {
+  a{
+    margin-top: 0px !important;
+  }
+}
+*:focus {
+  box-shadow: none !important;
+}
+*:focus-visible{
+  outline: none !important;
+}
+li a.nuxt-link-exact-active {
+  color: #FD7237 !important;
+}
+.profile-page{
+  margin-top: 6rem;
+}
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {

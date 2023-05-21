@@ -38,25 +38,24 @@ export const mutations = {
 
     FETCH_USER_FAIL(state, user) {
         state.token = null
-        Cookies.remove('pms-chhaythai-cookies')
+        Cookies.remove('e')
     },
 
     LOGOUT(state) {
-        state.user = {}
+        state.user = null
         state.token = null
-        state.roleModules = []
-        state.authLevel = null
-        Cookies.remove('pms-chhaythai-cookies')
+        //state.roleModules = []
+        //state.authLevel = null
+        Cookies.remove('e')
     },
 }
 
 export const actions = { 
-    login({ commit }, { access_token, user, role_modules, auth_level }) {
-        console.log(user);
+    login({ commit }, { token, user, expired_date }) {
        
-        commit('SAVE_TOKEN', access_token)
+        commit('SAVE_TOKEN', token)
         commit('FETCH_USER_SUCCESS', user)
-       
+        Cookies.set('e', token, { expires: expired_date })
         // commit('SET_ROLE_MODULE', role_modules)
         // commit('SET_AUTH_LEVEL', auth_level)
         // Cookies.set('pms-chhaythai-cookies', token, {
@@ -70,27 +69,25 @@ export const actions = {
 				commit('SAVE_TOKEN', token)
 				// Cookies.set('c', token, { expires: 3600 })
 	},
-	fetchUser({ commit }, { user, role_modules, auth_level}) {
-				try {
-					commit('FETCH_USER_SUCCESS', user)
-					commit('SET_ROLE_MODULE', role_modules)
-					commit('SET_AUTH_LEVEL', auth_level)
-				} catch (e) {
-					commit('FETCH_USER_FAIL')
-				}
+	fetchUser({ commit }, { token, user, expired_date }) {
+        try {
+            commit('FETCH_USER_SUCCESS', user)
+        } catch (e) {
+            commit('FETCH_USER_FAIL')
+        }
 	},
-			async logout({ state, commit }) {
-				try {
-					const input = { fcm_token: state.token }
+    async logout({ state, commit }) {
+        try {
+            //const input = { fcm_token: state.token }
 
-					await this.$axios.$post('logout', input)
+            await this.$axios.$post('logout')
 
-					commit('LOGOUT')
-				} catch (e) {
-					commit('LOGOUT')
-				}
-			},
-			clearLogout({ commit }) {
-				commit('LOGOUT')
-			},
+            commit('LOGOUT')
+        } catch (e) {
+            commit('LOGOUT')
+        }
+    },
+    clearLogout({ commit }) {
+        commit('LOGOUT')
+    },
 }

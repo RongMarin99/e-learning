@@ -18,6 +18,7 @@
     "@nuxtjs/vercel-builder": "^0.22.1",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
+    "cookie-universal-nuxt": "^2.2.2",
     "core-js": "^3.25.3",
     "firebase": "^8.2.9",
     "js-cookie": "^3.0.1",
