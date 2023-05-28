@@ -42,6 +42,18 @@
                           <p class="mb-0 pl-2 color-dark-blue">Profile</p>
                         </div>
                       </b-dropdown-item>
+                      <b-dropdown-item to="/Profile">
+                        <div class="d-flex align-items-center">
+                          <i class="material-icons color-dark-blue">favorite</i>
+                          <p class="mb-0 pl-2 color-dark-blue">My Wishlist</p>
+                        </div>
+                      </b-dropdown-item>
+                      <b-dropdown-item to="/Profile">
+                        <div class="d-flex align-items-center">
+                          <i class="material-icons color-dark-blue">stars</i>
+                          <p class="mb-0 pl-2 color-dark-blue">My Subscription</p>
+                        </div>
+                      </b-dropdown-item>
                       <b-dropdown-item @click="logout()" >
                         <div class="d-flex align-items-center">
                           <i class="material-icons color-dark-blue">logout</i>
@@ -160,6 +172,7 @@
 import cookie from 'js-cookie'
 import { mapGetters } from 'vuex'
 export default{
+    middleware: 'notAuth',
     colorMode: 'light',
   //   head () {
   //   return {

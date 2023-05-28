@@ -58,7 +58,7 @@
                     </b-row>
                 </div>
             </b-col>
-            <b-col cols="8">
+            <b-col cols="8" class="mb-4">
                 <div class="bg-white">
                     <b-row class="p-3">
                         <b-col cols="8">
@@ -119,6 +119,90 @@
                                 
                                 </b-input-group>
                             </b-form-group>
+                        </b-col>                        
+                        <b-col cols="6">
+                            <b-form-group
+                                    label="Phone"
+                                >
+                                <b-input-group>
+                                        <template #prepend>
+                                            <div class="rounded-left bg-form d-flex align-items-center justify-content-center px-2">
+                                                <i class="material-icons">phone</i>
+                                            </div>
+                                        </template>
+
+                                        <b-input pill placeholder="Phone">
+
+                                        </b-input>
+                                
+                                </b-input-group>
+                            </b-form-group>
+                        </b-col>
+                        <b-col cols="6">
+                            <b-form-group
+                                    label="Date of Birth"
+                                >
+                                <b-input-group>
+                                        <template #prepend>
+                                            <div class="rounded-left bg-form d-flex align-items-center justify-content-center px-2">
+                                                <i class="material-icons">calendar_today</i>
+                                            </div>
+                                        </template>
+
+                                        <b-input pill placeholder="Date of Birth">
+
+                                        </b-input>
+                                
+                                </b-input-group>
+                            </b-form-group>
+                        </b-col>
+
+                        <b-col cols="6">
+                            <b-form-group
+                                    label="Email"
+                                >
+                                <b-input-group>
+                                        <template #prepend>
+                                            <div class="rounded-left bg-form d-flex align-items-center justify-content-center px-2">
+                                                <i class="material-icons">mail</i>
+                                            </div>
+                                        </template>
+
+                                        <b-input pill placeholder="Email">
+
+                                        </b-input>
+                                
+                                </b-input-group>
+                            </b-form-group>
+                        </b-col>
+                        <b-col cols="6">
+                            <b-form-group
+                                    label="Password"
+                                >
+                                <b-input-group>
+                                        <template #prepend>
+                                            <div class="rounded-left bg-form d-flex align-items-center justify-content-center px-2">
+                                                <i class="material-icons">lock</i>
+                                            </div>
+                                        </template>
+
+                                        <b-input pill placeholder="Password">
+
+                                        </b-input>
+                                
+                                </b-input-group>
+                            </b-form-group>
+                        </b-col>
+                        <b-col cols="12">
+                            <b-form-group
+                             label="Address"
+                            >
+                                <b-form-textarea
+                                    placeholder="Enter something..."
+                                    rows="3"
+                                    max-rows="6"
+                                ></b-form-textarea>
+                            </b-form-group>
                         </b-col>
                     </b-row>
                 </div>
@@ -129,6 +213,8 @@
 
 <script>
 export default{
+    // middleware: 'acl',
+    // moduleKey: 'profile',
     data(){
         return {
 

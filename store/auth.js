@@ -55,7 +55,7 @@ export const actions = {
        
         commit('SAVE_TOKEN', token)
         commit('FETCH_USER_SUCCESS', user)
-        Cookies.set('e', token, { expires: expired_date })
+        Cookies.set('e', token, { expires: 1440 })
         // commit('SET_ROLE_MODULE', role_modules)
         // commit('SET_AUTH_LEVEL', auth_level)
         // Cookies.set('pms-chhaythai-cookies', token, {
