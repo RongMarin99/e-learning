@@ -213,7 +213,7 @@
 
 <script>
 export default{
-    // middleware: 'acl',
+    middleware: 'notAuth',
     // moduleKey: 'profile',
     data(){
         return {

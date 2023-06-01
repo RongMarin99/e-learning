@@ -18,7 +18,7 @@
                       <b-nav-item class="pl-4" href="#">About Us</b-nav-item>
                       <b-nav-item class="pl-4" href="#">Instructors</b-nav-item>
                       <b-nav-item class="pl-4" href="#">Students</b-nav-item>
-                      <b-nav-item class="pl-4" href="#">Contact Us</b-nav-item>
+                      <b-nav-item class="pl-4" href="/Contact-Us">Contact Us</b-nav-item>
                     </b-navbar-nav>
                  
                   
@@ -172,7 +172,6 @@
 import cookie from 'js-cookie'
 import { mapGetters } from 'vuex'
 export default{
-    middleware: 'notAuth',
     colorMode: 'light',
   //   head () {
   //   return {
