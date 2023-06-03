@@ -29,8 +29,8 @@ export const mutations = {
         state.roleModules = roleModules
     },
     SET_USER_AUTH_TOKEN(state, token) {
-      //  state.user.auth_token = token
-      state.firebase_token = token
+        //  state.user.auth_token = token
+        state.firebase_token = token
     },
     SET_AUTH_LEVEL(state, authLevel) {
         state.authLevel = authLevel
@@ -50,32 +50,32 @@ export const mutations = {
     },
 }
 
-export const actions = { 
+export const actions = {
     login({ commit }, { token, user, expired_date }) {
-       
+
         commit('SAVE_TOKEN', token)
         commit('FETCH_USER_SUCCESS', user)
-        Cookies.set('e', token, { expires: 1440 })
+        Cookies.set('e', token, { expires: 1 })
         // commit('SET_ROLE_MODULE', role_modules)
         // commit('SET_AUTH_LEVEL', auth_level)
         // Cookies.set('pms-chhaythai-cookies', token, {
         //     expires: 7
         // })
-	}, 
+    },
     setUserAuthToken({ commit }, token) {
-		commit('SET_USER_AUTH_TOKEN', token)
-	}, 
+        commit('SET_USER_AUTH_TOKEN', token)
+    },
     saveToken({ commit }, token) {
-				commit('SAVE_TOKEN', token)
-				// Cookies.set('c', token, { expires: 3600 })
-	},
-	fetchUser({ commit }, { token, user, expired_date }) {
+        commit('SAVE_TOKEN', token)
+        // Cookies.set('c', token, { expires: 3600 })
+    },
+    fetchUser({ commit }, { token, user, expired_date }) {
         try {
             commit('FETCH_USER_SUCCESS', user)
         } catch (e) {
             commit('FETCH_USER_FAIL')
         }
-	},
+    },
     async logout({ state, commit }) {
         try {
             //const input = { fcm_token: state.token }

@@ -26,7 +26,13 @@
                   <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">
 
-                    <b-nav-item-dropdown no-caret right v-if="nullToVoid(user)!=''" class="profile-icon mt-0">
+                    <b-nav-item-dropdown 
+                       no-caret 
+                       right 
+                       v-if="nullToVoid(user)!=''" 
+                       class="profile-icon mt-0"
+                       active-class="custome-dropdown-active-class"
+                    >
                       <!-- Using 'button-content' slot -->
                       <template #button-content>
                         <div class="d-flex justify-content-center align-items-center">
@@ -42,13 +48,13 @@
                           <p class="mb-0 pl-2 color-dark-blue">Profile</p>
                         </div>
                       </b-dropdown-item>
-                      <b-dropdown-item to="/Profile">
+                      <b-dropdown-item to="/Wishlist">
                         <div class="d-flex align-items-center">
                           <i class="material-icons color-dark-blue">favorite</i>
                           <p class="mb-0 pl-2 color-dark-blue">My Wishlist</p>
                         </div>
                       </b-dropdown-item>
-                      <b-dropdown-item to="/Profile">
+                      <b-dropdown-item to="/Subscription">
                         <div class="d-flex align-items-center">
                           <i class="material-icons color-dark-blue">stars</i>
                           <p class="mb-0 pl-2 color-dark-blue">My Subscription</p>
