@@ -90,6 +90,7 @@ export default {
     { src: '~/plugins/flag.js', mode: 'client'},
     { src: '~/plugins/share.js', mode: 'client'},
     { src: '~/plugins/firebase.js', mode: 'client' },
+    { src: '~/plugins/video-play.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

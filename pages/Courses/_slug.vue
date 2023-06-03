@@ -1,5 +1,11 @@
 <template>
     <div style="height: fit-content;">
+        <div v-if="isPlay">
+            <video-play
+            :PlayVideo="play_video"
+            @closeModal="closeModal"
+            />
+        </div>
        <!-- <h1> {{ $route.params.slug }} </h1> -->
        <b-container fluid class="pl-0 pr-0">
             <div class="bg-image-course" 
@@ -224,9 +230,15 @@
                         <b-col cols="4">
                             <div class="bg-white mt-5 p-3">
                                 <div class="thumbnail">
-                                    <figure>
+                                    <figure class="position-relative">
                                         <img src="https://via.placeholder.com/200x150" alt="">
+                                        <i 
+                                          class="material-icons position-absolute play-button"
+                                          style="top:50%;left:50%;transform: translate(-50%,-50%)"
+                                          @click="PlayVideo()"
+                                        >play_arrow</i>
                                     </figure>
+                                    
                                 </div>
                                 <h2 class="color-dark-blue pt-2">
                                     $ 41.00
@@ -350,14 +362,17 @@
 </template>
 
 <script>
+import VideoPlay from '~/components/VideoPlay.vue'
 export default{
    data(){
     return {
-        
+        isPlay: false,
+        play_video: 0
     }
    },
    components: {
-        ShowAlert: () => import('~/components/ShowAlert.vue')
+        ShowAlert: () => import('~/components/ShowAlert.vue'),
+        VideoPlay
    },
    methods: {
     Enroll(){
@@ -369,7 +384,14 @@ export default{
         }
        
     },
-    
+    PlayVideo(){
+        this.isPlay = true
+        this.play_video = 1
+    },
+    closeModal(){
+        this.isPlay = false
+        this.play_video = 0
+    }
    }
 }
 </script>
